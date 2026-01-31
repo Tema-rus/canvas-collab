@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>DrawWithLove ❤️</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+            integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+            crossorigin="anonymous"></script> <!-- Socket.io! -->
+    <style>
+        body {
+            margin: 0;
+            background: #f0f0f0;
+            font-family: Arial;
+            overflow: hidden;
+        }
+
+        canvas {
+            border: 2px solid #ff69b4;
+            display: block;
+            margin: 10px auto;
+            background: white;
+            touch-action: none;
+
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #toolbar {
+            text-align: center;
+            padding: 10px;
+            background: #fff;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff1493;
+        }
+
+        input[type=color] {
+            width: 50px;
+            height: 50px;
+            border: none;
+            vertical-align: middle;
+        }
+
+        input[type=range] {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="toolbar">
+    <label>Цвет: <input type="color" id="color" value="#000000"></label>
+    <label>Размер: <input type="range" id="size" min="1" max="20" value="5"></label>
+    <button onclick="clearCanvas()">Очистить</button>
+    <button onclick="saveImage()">Сохранить</button>
+    <button onclick="uploadBackground()">🖼️ Загрузить фон</button>
+    <button onclick="removeBackground()">🗑️ Убрать фон</button>
+    <button id="eraserBtn" onclick="toggleEraser()">🧹 Ластик</button>
+    <button onclick="undo()">↩ Undo</button>
+    <button onclick="zoom('in')">🔍+</button>
+    <button onclick="zoom('out')">🔍-</button>
+</div>
+<canvas id="canvas" width="800" height="600"></canvas>
+<script src="app.js"></script>
+<script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
